@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan Coach · 智能任务分解中心</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__badge">PLAN COACH STYLE</div>
+      <h1>任务拆解，不只列清单，更要走得动</h1>
+      <p>
+        输入你的目标，系统会自动拆分为阶段流程、小任务、时间条，并生成可执行计划。
+        同时支持任务打卡与评分追踪，帮助你把“想做”变成“做到”。
+      </p>
+      <div class="hero__stats">
+        <div><strong id="totalTasks">0</strong><span>总任务</span></div>
+        <div><strong id="doneTasks">0</strong><span>已完成</span></div>
+        <div><strong id="avgScore">0</strong><span>平均评分</span></div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel input-panel">
+        <h2>1) 创建主任务</h2>
+        <form id="taskForm">
+          <label>任务名称
+            <input id="taskName" required placeholder="例如：30天完成产品原型发布" />
+          </label>
+          <label>任务类型
+            <select id="taskType">
+              <option>产品开发</option>
+              <option>学习提升</option>
+              <option>运营增长</option>
+              <option>项目交付</option>
+              <option>个人计划</option>
+            </select>
+          </label>
+          <label>目标截止日期
+            <input id="deadline" type="date" required />
+          </label>
+          <label>优先级
+            <select id="priority">
+              <option value="高">高</option>
+              <option value="中">中</option>
+              <option value="低">低</option>
+            </select>
+          </label>
+          <label>可投入时长（小时/周）
+            <input id="hoursPerWeek" type="number" min="1" value="10" required />
+          </label>
+          <label>任务描述
+            <textarea id="taskDesc" rows="3" placeholder="补充背景、限制条件、核心目标…"></textarea>
+          </label>
+          <button type="submit">AI 智能分析并生成执行方案</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>2) AI 分析与可实施方案</h2>
+        <div id="aiPlan" class="empty">提交任务后，这里将显示：风险点、执行建议、资源配置、关键里程碑。</div>
+      </section>
+
+      <section class="panel">
+        <h2>3) 任务流程与小任务分解</h2>
+        <div id="flowArea" class="empty">暂无流程</div>
+      </section>
+
+      <section class="panel">
+        <h2>4) 时间条（Timeline）</h2>
+        <div id="timelineArea" class="empty">暂无时间条</div>
+      </section>
+
+      <section class="panel">
+        <h2>5) 自动日期表格（可编辑）</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>阶段</th>
+              <th>当日任务</th>
+              <th>预计工时</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleTableBody">
+            <tr><td colspan="4" class="empty">暂无计划表</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>6) 执行记录与评分</h2>
+        <form id="logForm" class="log-form">
+          <label>选择任务
+            <select id="logTask"></select>
+          </label>
+          <label>执行情况
+            <input id="logContent" placeholder="例如：完成竞品分析并输出结论" required />
+          </label>
+          <label>完成评分（1-10）
+            <input id="logScore" type="number" min="1" max="10" required />
+          </label>
+          <button type="submit">记录并更新评分</button>
+        </form>
+        <ul id="logList" class="log-list">
+          <li class="empty">暂无执行记录</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
